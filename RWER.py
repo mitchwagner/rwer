@@ -41,12 +41,13 @@ def __map_edges_to_ids(edges: List[Edge], start) -> Dict[Edge, Node]:
     :param edges: list of edges to map
     :param start: integer ID to start with
     '''
-    mapping = Dict[Edge, Node]
+    mapping: Dict[Edge, Node] = {}
 
     for edge, i in zip(edges, itertools.count(start)):
         mapping[edge] = Node(i)
 
     return mapping
+
 
 # TODO: "intermediate" is not really the right term
 def __add_intermediate_nodes_and_edges(
@@ -136,6 +137,6 @@ def rwer(graph: DiGraph, restart_set: List[Edge], q: float, eps: float,
         original_head = mapping(edge.head)
 
         true_fluxes_remapped[(original_tail, original_head)] = \
-            true_fluxes(edge)
+            true_fluxes[edge]
 
     return true_fluxes_remapped
